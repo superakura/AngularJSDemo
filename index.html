@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="phonecatApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AngularJSDemo</title>
+    <link rel=stylesheet "" href="css/bootstrap.min.css"></link>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="controllers.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <h2>菜单</h2>
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                <h2>功能模块</h2>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">双向数据绑定</h3>
+                    </div>
+                    <div class="panel-body">
+                        输入：<input class="form-control" ng-model="person.name">
+                        <br />
+                        <p>显示：{{person.name}}</p>
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">HomeController</h3>
+                    </div>
+                    <div class="panel-body" ng-controller="HomeCtrl">
+                        <p>{{greeting.text}}</p>
+                        <button ng-click="btnShowHello()">ng-click</button>
+                        <p>Nothing here {{'yet' + '!'}}</p>
+                        <p>1 + 2 = {{ 1 + 2 }}</p>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">PhoneCatList</h3>
+                    </div>
+                    <div class="panel-body" ng-controller="PhoneListCtrl">
+                        <p>
+                            <label for="">搜索</label>
+                            <input ng-model="query" class="form-control">
+                        </p>
+                        <p>
+                            <label for="">排序</label>
+                            <select class="form-control" ng-model="orderbyProp">
+                                    <option value="name">Alphabetical</option>
+                                    <option value="age">Newest</option>
+                            </select>
+                        </p>
+                        <ul>
+                            <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+                                <span>{{phone.name}}</span>
+                                <p>{{phone.snippet}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">http-get-json</h3>
+                    </div>
+                    <div class="panel-body" ng-controller="PhoneListHttpCtrl">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="">搜索</label>
+                                <input ng-model="query" class="form-control">
+                            </div>
+                        </div>
+                        <ul>
+                            <li ng-repeat="phone in phones | filter:query">
+                                <span>{{phone.name}}</span>
+                                <p>{{phone.snippet}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
